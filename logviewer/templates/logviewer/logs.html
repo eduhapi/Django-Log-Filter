@@ -1,0 +1,90 @@
+<!-- logs.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtered Logs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            word-wrap: break-word; /* Wrap long words */
+            overflow: hidden; /* Hide overflow */
+            text-overflow: ellipsis; /* Show ellipsis (...) for overflow */
+        }
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button[type="submit"] {
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Filter Logs</h1>
+        <p>You are using {{ current_log_file }}.</p>
+
+        <hr>
+        <!-- Search form -->
+        <form action="" method="GET">
+            <input type="text" name="search_query" placeholder="Enter search query">
+            <button type="submit">Search</button>
+        </form>
+         <!-- Display filtered logs -->
+        <h2>Filtered Results</h2>
+        <p>{{ default_message }}</p>
+        {% if logs %}
+            <ul>
+                {% for log in logs %}
+                    <li>{{ log }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No logs found.</p>
+        {% endif %}
+
+        
+    </div>
+</body>
+</html>
